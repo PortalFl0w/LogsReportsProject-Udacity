@@ -8,13 +8,19 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-You will need to install the following prior to running this software:
+You will need to install/download the following prior to running this software:
 
 * Python2
 * Virtual Box
 * Vagrant
+* Logs Database
 
 ### Installing
+
+Download the database here:
+[LogsDatabase](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
+
+Then extract the database into the root folder of this project (this is wherever you saved this project on your local machine).
 
 Run your vagrant machine using the Vagrantfile provided with the project.
 
