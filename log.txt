@@ -1,0 +1,13 @@
+--- New Report: 2018-07-02 20:29:38.635688 ---
+Top 3 Articles by Views:
+Article "Candidate is jerk, alleges rival" reached: 342102 views.
+Article "Bears love berries, alleges bear" reached: 256365 views.
+Article "Bad things gone, say good people" reached: 171762 views.
+
+Top 3 Authors by Views:
+Author "Ursula La Multa" reached 512805 views.
+Author "Rudolf von Treppenwitz" reached 427781 views.
+Author "Anonymous Contributor" reached 171762 views.
+
+Days on which more than 1 percent of requests were errors:
+No days had more than 1 percent errors
