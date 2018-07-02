@@ -1,17 +1,20 @@
 # Imports
 import psycopg2
+import datetime
 
 # DB Connection
 db = psycopg2.connect("dbname=news")
 
 # Create a cursor, use this to perform queries
 cursor = db.cursor()
-
+file = open("log.txt","w")
+time = datetime.datetime.now()
+file.write("--- New Report: " + str(time) + " ---")
 
 def reportArticles():
-    # Get top 3 articles
-    print "|----------------------| START"
-    print "Top 3 Articles by Views:"
+    print "Getting top 3 Articles..."
+
+    file.write("\nTop 3 Articles by Views:\n")
 
     # Query to execute
     topArticlesQuery = """
@@ -24,19 +27,16 @@ def reportArticles():
     """
     cursor.execute(topArticlesQuery)  # Execute the query
     topArticles = cursor.fetchall()  # Fetch all results into variable
-    colnames = [desc[0] for desc in cursor.description]
-    print colnames
     for a in topArticles:
         # For each result, print a line of text to report the number of views.
-        print "Article \"" + a[0] + "\" reached: " + str(a[1]) + " views."
-
-    print "|----------------------| END"
+        file.write("Article \"" + a[0] + "\" reached: " + str(a[1]) + " views.\n")
+    print "Done."
 
 
 def reportAuthors():
-    # Get top 3 articles
-    print "|----------------------| START"
-    print "Top 3 Authors by Views:"
+    print "Getting top 3 authors..."
+
+    file.write("\nTop 3 Authors by Views:\n")
 
     # Query to execute
     topAuthorsQuery = """
@@ -50,17 +50,16 @@ def reportAuthors():
     """
     cursor.execute(topAuthorsQuery)  # Execute the query
     topAuthors = cursor.fetchall()  # Fetch all results into variable
-    colnames = [desc[0] for desc in cursor.description]
-    print colnames
     for a in topAuthors:
         # For each result, print a line of text.
-        print "Author \"" + a[0] + "\" reached " + str(a[1]) + " views."
-    print "|----------------------| END"
+        file.write("Author \"" + a[0] + "\" reached " + str(a[1]) + " views.\n")
+    print "Done."
 
 
 def reportLogErrors():
-    print "|----------------------| START"
-    print """Days on which more than 1 percent of requests were errors:"""
+    print "Getting error logs..."
+
+    file.write("\nDays on which more than 1 percent of requests were errors:\n")
 
     # Get Log
     logQuery = """
@@ -83,15 +82,18 @@ def reportLogErrors():
     logs = cursor.fetchall()
     if len(logs) > 0:
         for log in logs:
-            print str(log[0]) + ": " + str(log[3])
+            file.write(str(log[0]) + ": " + str(log[3]) + "\n")
     else:
-        print "No days had more than 1 percent errors"
-    print "|----------------------| END"
+        file.write("No days had more than 1 percent errors")
+    print "Done."
 
 reportArticles()
 reportAuthors()
 reportLogErrors()
 
+print "Done, see log.txt in \"./\" directory"
+
 # close DB Connection once program has run.
 cursor.close()
 db.close()
+file.close()
