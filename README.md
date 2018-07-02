@@ -22,7 +22,7 @@ Download the database here:
 
 Then extract the database into the root folder of this project (this is wherever you saved this project on your local machine).
 
-Run your vagrant machine using the Vagrantfile provided with the project.
+Run your vagrant machine using the Vagrantfile provided with the project. This process can take a while.
 
 ```
 vagrant up
@@ -46,7 +46,7 @@ Once the database is installed, run the folloing command to produce a report:
 python report.py
 ```
 
-That's it!
+That's it! Once the program appears to be finished, check the log.txt file.
 
 ## Built With
 
