@@ -1,6 +1,6 @@
 # Logs Analysis - Udacity
 
-One Paragraph of project description goes here
+The python script included in this project performs a mock query to a database for a fictional news website. It uses psycopg2 to send PostgreSQL queries to the database. The database includes a list of articles, along with their urls and author IDs; a list of authors; and a logs table which logs every connection to the website as well as its status.
 
 ## Getting Started
 
@@ -10,10 +10,10 @@ These instructions will get you a copy of the project up and running on your loc
 
 You will need to install/download the following prior to running this software:
 
-* Python2
-* Virtual Box
-* Vagrant
-* Logs Database
+* [Python2](https://www.python.org/downloads/release/python-2715/)
+* [Virtual Box](https://www.virtualbox.org/wiki/Downloads)
+* [Vagrant](https://www.vagrantup.com/downloads.html)
+* [Logs Database](https://d17h27t6h515a5.cloudfront.net/topher/2016/August/57b5f748_newsdata/newsdata.zip)
 
 ### Installing
 
