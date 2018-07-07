@@ -23,7 +23,7 @@ def reportArticles():
     topArticlesQuery = """
     SELECT a.title, COUNT(*) AS views
     FROM articles a
-    JOIN log l ON l.path LIKE '%' || a.slug || '%'
+    JOIN log l ON l.path = '/articles/' || a.slug
     GROUP BY a.title
     ORDER BY views DESC
     LIMIT 3
@@ -46,7 +46,7 @@ def reportAuthors():
     SELECT au.name, count(*) as views
     FROM authors au
     LEFT JOIN articles ar ON au.id = ar.author
-    JOIN log l ON l.path LIKE '%' || ar.slug || '%'
+    JOIN log l ON l.path = '/articles/' || ar.slug
     GROUP BY au.name
     ORDER BY views DESC
     LIMIT 4
@@ -66,26 +66,27 @@ def reportLogErrors():
 
     # Get Log
     logQuery = """
-    SELECT cast(l.time as date) AS day,
-    COUNT(*) AS total,
-    l2.errors AS errors,
-    ROUND((l2.errors * 100) / COUNT(*)::numeric, 3) AS error_perc
-    FROM log l
+    SELECT l1.date,
+    ROUND((l2.errors * 100) / l1.total::numeric, 3) AS error_perc
+    FROM (
+        SELECT COUNT(*) AS total, time::date AS date
+        FROM log
+        GROUP BY date
+    ) AS l1
     LEFT JOIN (
-        SELECT COUNT(l2.status) AS errors,
-        date_trunc('day', l2.time) AS error_day
-        FROM log l2
-        WHERE l2.status NOT LIKE '%200%'
-        GROUP BY error_day
-        ) l2 ON date_trunc('day', l.time) = l2.error_day
-    GROUP BY day, l2.errors
-    HAVING ROUND((l2.errors * 100) / COUNT(*), 3) >= 1
+        SELECT COUNT(*) AS errors, time::date AS date
+        FROM log
+        WHERE status NOT LIKE '%200%'
+        GROUP BY date
+    ) AS l2
+    ON l1.date = l2.date
+    WHERE (l2.errors * 100) / l1.total::numeric >= 1;
     """
     cursor.execute(logQuery)
     logs = cursor.fetchall()
     if len(logs) > 0:
         for log in logs:
-            file.write(str(log[0]) + ": " + str(log[3]) + "%\n")
+            file.write(str(log[0]) + ": " + str(log[1]) + "%\n")
     else:
         file.write("No days had more than 1 percent errors")
     print "Done."
