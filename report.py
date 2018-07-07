@@ -23,7 +23,7 @@ def reportArticles():
     topArticlesQuery = """
     SELECT a.title, COUNT(*) AS views
     FROM articles a
-    JOIN log l ON l.path = '/articles/' || a.slug
+    JOIN log l ON l.path = '/article/' || a.slug
     GROUP BY a.title
     ORDER BY views DESC
     LIMIT 3
@@ -46,7 +46,7 @@ def reportAuthors():
     SELECT au.name, count(*) as views
     FROM authors au
     LEFT JOIN articles ar ON au.id = ar.author
-    JOIN log l ON l.path = '/articles/' || ar.slug
+    JOIN log l ON l.path = '/article/' || ar.slug
     GROUP BY au.name
     ORDER BY views DESC
     LIMIT 4
