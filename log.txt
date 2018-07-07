@@ -1,14 +1,14 @@
---- New Report: 2018-07-04 19:18:57.042580 ---
+--- New Report: 2018-07-07 08:14:23.392326 ---
 Top 3 Articles by Views:
-Article "Candidate is jerk, alleges rival": 342102 views.
-Article "Bears love berries, alleges bear": 256365 views.
-Article "Bad things gone, say good people": 171762 views.
+Article "Candidate is jerk, alleges rival": 338647 views.
+Article "Bears love berries, alleges bear": 253801 views.
+Article "Bad things gone, say good people": 170098 views.
 
-Top 3 Authors by Views:
-Author "Ursula La Multa": 512805 views.
-Author "Rudolf von Treppenwitz": 427781 views.
-Author "Anonymous Contributor": 171762 views.
-Author "Markoff Chaney": 85387 views.
+Top 4 Authors by Views:
+Author "Ursula La Multa": 507594 views.
+Author "Rudolf von Treppenwitz": 423457 views.
+Author "Anonymous Contributor": 170098 views.
+Author "Markoff Chaney": 84557 views.
 
 Days on which more than 1 percent of requests had errors:
 2016-07-17: 2.263%
